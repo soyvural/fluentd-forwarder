@@ -23,10 +23,6 @@ import (
 	"compress/gzip"
 	"crypto/x509"
 	"errors"
-	ioextras "github.com/moriyoshi/go-ioextras"
-	logging "github.com/op/go-logging"
-	td_client "github.com/treasure-data/td-client-go"
-	"github.com/ugorji/go/codec"
 	"net"
 	"os"
 	"reflect"
@@ -34,6 +30,11 @@ import (
 	"sync"
 	"sync/atomic"
 	"time"
+
+	ioextras "github.com/moriyoshi/go-ioextras"
+	logging "github.com/op/go-logging"
+	td_client "github.com/treasure-data/td-client-go"
+	"github.com/ugorji/go/codec"
 )
 
 type tdOutputSpooler struct {
@@ -463,9 +464,9 @@ func NewTDOutput(
 		ConnectionTimeout: connectionTimeout,
 		// ReadTimeout: readTimeout, // TODO
 		SendTimeout: writeTimeout,
-		Ssl:         useSsl,
-		RootCAs:     rootCAs,
-		Proxy:       httpProxy_,
+		// Ssl:         useSsl,
+		RootCAs: rootCAs,
+		Proxy:   httpProxy_,
 	})
 	if err != nil {
 		return nil, err
